@@ -1,0 +1,151 @@
+:root {
+    --bg-color: #f0f2f5;
+    --container-bg: #ffffff;
+    --text-color: #333333;
+    --primary-color: #007bff;
+    --input-bg: #e9ecef;
+    --border-color: #ced4da;
+    --shadow-light: rgba(0, 0, 0, 0.08);
+}
+
+body {
+    font-family: 'Segoe UI', 'Roboto', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-size: 16px;
+}
+
+.container {
+    width: 90%;
+    max-width: 450px;
+    padding: 30px 20px;
+    background-color: var(--container-bg);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px var(--shadow-light);
+    text-align: center;
+}
+
+h2 {
+    font-weight: 600;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-color);
+    text-align: left;
+    font-size: 0.9em;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-size: 1em;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.logo {
+    margin-bottom: 15px;
+    font-size: 2em;
+    color: var(--primary-color);
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 40px;
+    }
+
+    h2 {
+        font-size: 2.2rem;
+        margin-bottom: 25px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-size: 1em;
+    }
+
+    input[type="text"] {
+        padding: 15px;
+    }
+
+    button {
+        padding: 15px;
+        font-size: 1.125em;
+    }
+
+    #result {
+        margin-top: 25px;
+        font-size: 1.5em;
+    }
+
+    .logo {
+        margin-bottom: 20px;
+        font-size: 2.5em;
+    }
+}
+
+.footer {
+    background: #222;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+}
