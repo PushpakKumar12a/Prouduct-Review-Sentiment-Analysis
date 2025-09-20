@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify, render_template
+import nltk
 import pickle
 import os
 import re
 from nltk.corpus import stopwords
 
+nltk.download('stopwords')
 app = Flask(__name__)
 
 with open('vectorizer.pkl', 'rb') as f:
