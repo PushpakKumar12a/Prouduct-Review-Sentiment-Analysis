@@ -131,6 +131,12 @@ button:active {
     border: 1px solid #f5c6cb;
 }
 
+#result.neutral {
+    background-color: #e2e3e5;
+    color: #41464b;
+    border: 1px solid #d1d3d4;
+}
+
 .logo {
     margin-bottom: 15px;
     font-size: 1.8em;

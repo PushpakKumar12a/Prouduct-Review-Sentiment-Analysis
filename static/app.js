@@ -21,8 +21,12 @@ document.getElementById('predictForm').onsubmit = async function(e) {
             } else if (data.prediction === 'negative') {
                 resultDiv.textContent = 'Sentiment: Negative! 😠';
                 resultDiv.className = 'show negative';
+            } else if (data.prediction === 'neutral') {
+                resultDiv.textContent = 'Sentiment: Neutral 😐';
+                resultDiv.className = 'show neutral';
             } else {
                 resultDiv.textContent = 'Prediction: ' + data.prediction;
+                resultDiv.className = 'show';
             }
         } else {
             resultDiv.textContent = 'Error: ' + (data.error || 'Unknown error');

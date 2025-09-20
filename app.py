@@ -41,7 +41,15 @@ def predict():
     review_clean = clean_text(text)
     review_vec = vectorizer.transform([review_clean])
     pred = model.predict(review_vec)[0]
-    sentiment = 'positive' if pred == 1 else 'negative'
+    
+
+    if pred == 2:
+        sentiment = 'positive'
+    elif pred == 1:
+        sentiment = 'neutral'
+    else:  # pred == 0
+        sentiment = 'negative'
+    
     return jsonify({'prediction': sentiment})
 
 if __name__ == '__main__':
