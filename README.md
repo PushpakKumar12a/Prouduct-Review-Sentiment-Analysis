@@ -24,6 +24,7 @@ A simple web application for sentiment analysis using Flask, scikit-learn, and N
    ```python
    import nltk
    nltk.download('stopwords')
+   nltk.donload('punkt')
    ```
    Or add these lines to the top of `app.py` if not already present.
 4. **Ensure `model.pkl` and `vectorizer.pkl` are present in the project directory.**

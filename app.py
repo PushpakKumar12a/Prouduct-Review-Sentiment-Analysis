@@ -1,56 +1,54 @@
-from flask import Flask, request, jsonify, render_template
-import nltk
+from flask import Flask, render_template, request, jsonify
 import pickle
-import os
 import re
+import string
+import nltk
 from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer
 
 nltk.download('stopwords')
+nltk.download('punkt')
+
 app = Flask(__name__)
 
+with open('model.pkl', 'rb') as f:
+    model = pickle.load(f)
 with open('vectorizer.pkl', 'rb') as f:
     vectorizer = pickle.load(f)
 
-model_path = 'model.pkl'
-if os.path.exists(model_path):
-    with open(model_path, 'rb') as f:
-        model = pickle.load(f)
-else:
-    model = None
-
 stop_words = set(stopwords.words('english'))
-def clean_text(text):
-    text = str(text).lower()
-    text = re.sub(r'[^a-zA-Z0-9\s]', '', text)
-    words = text.split()
-    words = [w for w in words if w not in stop_words]
-    return ' '.join(words)
+
+# Remove negation words from stopwords as they're crucial for sentiment analysis
+negation_words = {'not', 'no', 'never', 'none', 'nothing', 'neither', 'nobody', 
+                  'nowhere', 'cannot', "can't", "won't", "shouldn't", "wouldn't", 
+                  "couldn't", "doesn't", "don't", "didn't", "isn't", "aren't", 
+                  "wasn't", "weren't", "hasn't", "haven't", "hadn't"}
+
+# Create custom stopwords excluding negation words
+custom_stop_words = stop_words - negation_words
+
+stemmer = PorterStemmer()
+
+def preprocess(text):
+    text = text.lower()
+    text = re.sub(f'[{re.escape(string.punctuation)}]', ' ', text)
+    tokens = text.split()
+    # Use custom stopwords that preserve negation words
+    tokens = [stemmer.stem(word) for word in tokens if word not in custom_stop_words]
+    return ' '.join(tokens)
 
 @app.route('/')
-def home():
-    return render_template('home.html')
+def index():
+    return render_template('index.html')
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    if model is None:
-        return jsonify({'error': 'Model file not found. Please add model.pkl.'}), 500
-    data = request.get_json(force=True)
-    text = data.get('text', '')
-    if not text:
-        return jsonify({'error': 'No text provided.'}), 400
-    review_clean = clean_text(text)
+    data = request.get_json()
+    review = data.get('review', '')
+    review_clean = preprocess(review)
     review_vec = vectorizer.transform([review_clean])
-    pred = model.predict(review_vec)[0]
-    
-
-    if pred == 2:
-        sentiment = 'positive'
-    elif pred == 1:
-        sentiment = 'neutral'
-    else:  # pred == 0
-        sentiment = 'negative'
-    
-    return jsonify({'prediction': sentiment})
+    prediction = model.predict(review_vec)[0]
+    return jsonify({'sentiment': prediction})
 
 if __name__ == '__main__':
     app.run(debug=True)
