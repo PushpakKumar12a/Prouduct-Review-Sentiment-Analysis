@@ -49,8 +49,9 @@ model.pkl
 vectorizer.pkl
 requirements.txt
 static/
-    app.js
+    script.js
     style.css
+    github.svg
 templates/
-    home.html
+    index.html
 ```
