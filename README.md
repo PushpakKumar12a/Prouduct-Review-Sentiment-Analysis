@@ -1,6 +1,7 @@
 # Sentiment Analysis Flask App
 
-A simple web application for sentiment analysis using Flask, scikit-learn, and NLTK. The app loads a pre-trained machine learning model and vectorizer to predict the sentiment (positive/negative) of user input text.
+A simple web application for sentiment analysis using Flask, scikit-learn, and NLTK.
+The app loads a pre-trained Naive Bayes classifier along with a vectorizer to predict the sentiment (positive / negative / neutral) of user input text.
 
 ## Features
 - Web interface for sentiment prediction
