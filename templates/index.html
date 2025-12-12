@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Review Sentiment Analysis</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <a href="https://github.com/PushpakKumar12a/Prouduct-Review-Sentiment-Analysis" class="github-link" target="_blank" aria-label="GitHub Repository">
+            <img src="/static/github.svg" alt="GitHub Logo" class="github-icon" />
+        </a>
+    </header>
+    <div class="container">
+        <div class="card">
+            <h1 class="title">📊 SENTIMENT ANALYSIS DASHBOARD</h1>
+            <form id="review-form" class="form">
+                <input
+                    type="text"
+                    id="review-input"
+                    name="review"
+                    placeholder="Type your review here…"
+                    autocomplete="off"
+                    class="input"
+                >
+                <button type="submit" class="btn">Predict Sentiment</button>
+            </form>
+            <div id="result" class="result"></div>
+        </div>
+        <footer>
+            <p>Made with <span>❤️</span> for data science</p>
+        </footer>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html>
