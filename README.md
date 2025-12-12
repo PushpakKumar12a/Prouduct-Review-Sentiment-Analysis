@@ -38,11 +38,9 @@ pip install -r requirements.txt
 
 Download required NLTK data (the app calls `nltk.download`, but you can prefetch):
 ```powershell
-python - << 'PY'
 import nltk
 nltk.download('stopwords')
 nltk.download('punkt')
-PY
 ```
 
 Place trained artifacts in the project root:
@@ -50,7 +48,8 @@ Place trained artifacts in the project root:
 - `vectorizer.pkl` — fitted vectorizer
 
 ## Run
-```python app.py
+```powershell
+python app.py
 ```
 
 ## API
