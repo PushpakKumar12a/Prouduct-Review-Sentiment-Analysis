@@ -7,9 +7,22 @@ import os
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 
-if not os.path.exists('nltk_data'):
-    nltk.download('stopwords', download_dir='nltk_data')
-nltk.data.path.append(os.path.join(os.getcwd(), 'nltk_data'))
+# Configure NLTK data path
+if os.path.exists('nltk_data'):
+    # Local development: use the local nltk_data folder
+    nltk.data.path.append(os.path.join(os.getcwd(), 'nltk_data'))
+else:
+    # Serverless environment: use /tmp
+    nltk_data_path = os.path.join('/tmp', 'nltk_data')
+    if not os.path.exists(nltk_data_path):
+        os.makedirs(nltk_data_path)
+    nltk.data.path.append(nltk_data_path)
+
+    # Download stopwords if not present
+    try:
+        nltk.data.find('corpora/stopwords')
+    except LookupError:
+        nltk.download('stopwords', download_dir=nltk_data_path)
 
 app = Flask(__name__)
 
