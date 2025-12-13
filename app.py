@@ -3,11 +3,13 @@ import pickle
 import re
 import string
 import nltk
+import os
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
 
-nltk.download('stopwords')
-nltk.download('punkt')
+if not os.path.exists('nltk_data'):
+    nltk.download('stopwords', download_dir='nltk_data')
+nltk.data.path.append(os.path.join(os.getcwd(), 'nltk_data'))
 
 app = Flask(__name__)
 
